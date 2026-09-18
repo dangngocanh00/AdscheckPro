@@ -323,7 +323,7 @@ export function AssetWorkspace({ locale }: Props) {
                 <button
                   key={asset.key}
                   onClick={() => switchModule(asset.key)}
-                  className="flex-shrink-0 flex items-center gap-2.5 px-3.5 py-3 rounded-xl text-left w-[145px]"
+                  className="flex-shrink-0 flex items-center gap-2.5 px-3.5 py-3 rounded-xl text-left w-[165px]"
                   style={{
                     background: isActive ? 'rgba(14,39,82,0.92)' : 'rgba(14,39,82,0.30)',
                     border: isActive ? '1px solid rgba(104,165,255,0.38)' : '1px solid rgba(104,165,255,0.10)',
@@ -336,7 +336,7 @@ export function AssetWorkspace({ locale }: Props) {
                   </div>
                   <div className="min-w-0">
                     <div className="text-[13px] font-bold truncate" style={{ color: isActive ? '#F5F8FF' : '#A9BDDF' }}>{asset.name}</div>
-                    <div className="text-[10px] mt-0.5 truncate" style={{ color: '#5E7A9C' }}>{asset.desc}</div>
+                    <div className="text-[10px] mt-0.5 leading-tight break-words" style={{ color: '#5E7A9C' }}>{asset.desc}</div>
                   </div>
                 </button>
               );
@@ -402,7 +402,7 @@ export function AssetWorkspace({ locale }: Props) {
                         style={{ color: isActive ? '#F5F8FF' : '#A9BDDF', transition: 'color 200ms ease' }}>
                         {asset.name}
                       </div>
-                      <div className="text-[11px] mt-0.5 truncate" style={{ color: '#5E7A9C' }}>
+                      <div className="text-[11px] mt-0.5 leading-snug break-words" style={{ color: '#5E7A9C' }}>
                         {asset.desc}
                       </div>
                     </div>
@@ -530,7 +530,7 @@ export function AssetWorkspace({ locale }: Props) {
                   boxShadow: '0 0 36px rgba(47,128,255,0.07)',
                 }}
               >
-                <div className="media-placeholder w-full h-full" style={{ minHeight: '180px' }}>
+                <div className="media-placeholder w-full h-full" style={{ minHeight: '180px', textTransform: 'none' }}>
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center"
                     style={{ background: 'rgba(47,128,255,0.12)', border: '1px solid rgba(104,165,255,0.18)', color: '#4D9CFF' }}
@@ -538,10 +538,10 @@ export function AssetWorkspace({ locale }: Props) {
                     {assetIcons[visible]}
                   </div>
                   <span style={{ color: '#4D9CFF', letterSpacing: '0.08em', fontSize: '12px', fontWeight: 600 }}>
-                    {mod.title.toUpperCase()} SCREENSHOT
+                    {mod.title}
                   </span>
                   <span style={{ color: '#4A6580', fontSize: '11px', marginTop: '2px' }}>
-                    REPLACE WITH REAL {visible.toUpperCase()} SCREENSHOT
+                    {tr.asset_media_subtitle}
                   </span>
                 </div>
               </div>

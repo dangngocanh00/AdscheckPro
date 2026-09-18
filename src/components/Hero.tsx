@@ -102,19 +102,21 @@ export function Hero({ locale }: HeroProps) {
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 mt-1">
               <button
-                className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-[15px] font-semibold transition-all duration-200"
+                className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-[15px] font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B9FF]"
                 style={{
-                  background: 'linear-gradient(135deg, #2F80FF 0%, #4D9CFF 100%)',
+                  background: 'linear-gradient(135deg, #7B2FF7 0%, #F916BD 100%)',
                   color: '#F5F8FF',
-                  boxShadow: '0 0 28px rgba(47,128,255,0.35)',
+                  boxShadow: '0 0 20px rgba(180,40,240,0.35)',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 0 40px rgba(47,128,255,0.50)';
+                  (e.currentTarget as HTMLElement).style.background = 'linear-gradient(135deg, #8F44FA 0%, #FA28C8 100%)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 0 30px rgba(180,40,240,0.55)';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
                 }}
                 onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = 'linear-gradient(135deg, #7B2FF7 0%, #F916BD 100%)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(180,40,240,0.35)';
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(47,128,255,0.35)';
                 }}
               >
                 {tr.hero_cta_primary}
