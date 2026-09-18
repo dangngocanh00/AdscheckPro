@@ -1,0 +1,10 @@
+{
+  "description": "Streamline project initiation with an intuitive tool that helps teams organize tasks, set goals, and kickstart workflows efficiently.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
