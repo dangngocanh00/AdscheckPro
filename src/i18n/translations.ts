@@ -58,7 +58,7 @@ export const t: Record<Locale, Record<string, string>> = {
     asset_pixel_desc: 'Sự kiện & chia sẻ',
 
     asset_via_eyebrow: 'VẬN HÀNH VIA',
-    asset_via_title: 'VIA Workspace',
+    asset_via_title: 'Không gian làm việc VIA',
     asset_via_body: 'Vận hành nhiều VIA trong một không gian duy nhất — theo dõi phiên đăng nhập, kết nối và độ ổn định mà không phải chuyển qua từng profile.',
     asset_via_badge1: 'Hồ sơ trình duyệt',
     asset_via_badge2: 'Tình trạng phiên',
@@ -492,7 +492,7 @@ export const t: Record<Locale, Record<string, string>> = {
     asset_pixel_desc: 'События и общий доступ',
 
     asset_via_eyebrow: 'УПРАВЛЕНИЕ VIA',
-    asset_via_title: 'VIA Workspace',
+    asset_via_title: 'Рабочее пространство VIA',
     asset_via_body: 'Управляйте несколькими VIA в едином рабочем пространстве — отслеживайте сеансы входа, подключения и стабильность без переключения между профилями.',
     asset_via_badge1: 'Профили браузера',
     asset_via_badge2: 'Состояние сессий',
@@ -709,7 +709,7 @@ export const t: Record<Locale, Record<string, string>> = {
     asset_pixel_desc: 'เหตุการณ์และการแชร์',
 
     asset_via_eyebrow: 'การจัดการ VIA',
-    asset_via_title: 'VIA Workspace',
+    asset_via_title: 'พื้นที่ทำงาน VIA',
     asset_via_body: 'จัดการ VIA หลายรายการในพื้นที่ทำงานเดียว — ติดตามเซสชันการเข้าสู่ระบบ การเชื่อมต่อ และความเสถียรโดยไม่ต้องสลับโปรไฟล์ไปมา',
     asset_via_badge1: 'โปรไฟล์เบราว์เซอร์',
     asset_via_badge2: 'สถานะเซสชัน',
@@ -926,7 +926,7 @@ export const t: Record<Locale, Record<string, string>> = {
     asset_pixel_desc: '事件与共享',
 
     asset_via_eyebrow: 'VIA 运营',
-    asset_via_title: 'VIA Workspace',
+    asset_via_title: 'VIA 工作区',
     asset_via_body: '在统一的工作空间中管理多个 VIA — 集中查看登录会话、连接状态和稳定性，无需频繁切换 profile。',
     asset_via_badge1: '浏览器配置',
     asset_via_badge2: '会话状态',

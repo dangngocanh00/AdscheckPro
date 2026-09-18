@@ -21,8 +21,7 @@ export function Footer({ locale, onLocaleChange }: Props) {
     { label: tr.footer_workflow, href: '#workflow' },
     { label: tr.footer_control_hub, href: '#control-hub' },
     { label: tr.footer_faq, href: '#faq' },
-    { label: tr.footer_policy, href: '#' },
-    { label: tr.footer_support, href: '#' },
+    { label: tr.footer_support, href: 'https://t.me/ngocanh_work', external: true },
   ];
 
   return (
@@ -50,7 +49,20 @@ export function Footer({ locale, onLocaleChange }: Props) {
 
           {/* Links */}
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            {links.map(link => (
+            {links.map(link => link.external ? (
+              <a
+                key={link.href + link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] font-medium transition-colors duration-150"
+                style={{ color: '#7F96B8' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#A9BDDF'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#7F96B8'}
+              >
+                {link.label}
+              </a>
+            ) : (
               <button
                 key={link.href + link.label}
                 onClick={() => scrollTo(link.href)}

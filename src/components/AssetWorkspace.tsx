@@ -1,10 +1,29 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { Locale, t } from '../i18n/translations';
+import viaImage from '../../assets/workspace-via.png';
+import adImage from '../../assets/workspace-tkqc.png';
+import bmImage from '../../assets/workspace-bm.png';
+import pageImage from '../../assets/workspace-page.png';
+import pixelImage from '../../assets/workspace-pixel.png';
 
 interface Props { locale: Locale }
 
 type AssetKey = 'via' | 'ad' | 'bm' | 'page' | 'pixel';
+
+interface AssetModule {
+  key: AssetKey;
+  label: string;
+  subtitle: string;
+  image: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  chips: string[];
+  cap: { title: string; desc: string }[];
+}
+
+const workspaceImages = [viaImage, adImage, bmImage, pageImage, pixelImage];
 
 /* ── Module icons ── */
 const assetIcons: Record<AssetKey, React.ReactElement> = {
@@ -211,6 +230,13 @@ export function AssetWorkspace({ locale }: Props) {
   const [visible, setVisible] = useState<AssetKey>('via');
   const [transitioning, setTransitioning] = useState(false);
   const tr = t[locale];
+  useEffect(() => {
+    workspaceImages.forEach(src => {
+      const image = new Image();
+      image.src = src;
+      void image.decode().catch(() => {});
+    });
+  }, []);
 
   function switchModule(key: AssetKey) {
     if (key === active || transitioning) return;
@@ -222,20 +248,8 @@ export function AssetWorkspace({ locale }: Props) {
     }, 160);
   }
 
-  const assets: { key: AssetKey; name: string; desc: string }[] = [
-    { key: 'via',   name: tr.asset_via_name,   desc: tr.asset_via_desc },
-    { key: 'ad',    name: tr.asset_ad_name,    desc: tr.asset_ad_desc },
-    { key: 'bm',    name: tr.asset_bm_name,    desc: tr.asset_bm_desc },
-    { key: 'page',  name: tr.asset_page_name,  desc: tr.asset_page_desc },
-    { key: 'pixel', name: tr.asset_pixel_name, desc: tr.asset_pixel_desc },
-  ];
-
-  const moduleData: Record<AssetKey, {
-    eyebrow: string; title: string; body: string;
-    chips: string[];
-    cap: { title: string; desc: string }[];
-  }> = {
-    via:   { eyebrow: tr.asset_via_eyebrow,   title: tr.asset_via_title,   body: tr.asset_via_body,
+  const modules: AssetModule[] = [
+    { key: 'via', label: 'VIA', subtitle: tr.asset_via_desc, image: viaImage, eyebrow: tr.asset_via_eyebrow,   title: tr.asset_via_title,   body: tr.asset_via_body,
       chips: [tr.asset_via_badge1, tr.asset_via_badge2, tr.asset_via_badge3, tr.asset_via_badge4],
       cap: [
         { title: tr.asset_via_cap1_title, desc: tr.asset_via_cap1_desc },
@@ -243,7 +257,7 @@ export function AssetWorkspace({ locale }: Props) {
         { title: tr.asset_via_cap3_title, desc: tr.asset_via_cap3_desc },
         { title: tr.asset_via_cap4_title, desc: tr.asset_via_cap4_desc },
       ] },
-    ad:    { eyebrow: tr.asset_ad_eyebrow,    title: tr.asset_ad_title,    body: tr.asset_ad_body,
+    { key: 'ad', label: 'Ad', subtitle: tr.asset_ad_desc, image: adImage, eyebrow: tr.asset_ad_eyebrow,    title: tr.asset_ad_title,    body: tr.asset_ad_body,
       chips: [tr.asset_ad_badge1, tr.asset_ad_badge2, tr.asset_ad_badge3, tr.asset_ad_badge4],
       cap: [
         { title: tr.asset_ad_cap1_title, desc: tr.asset_ad_cap1_desc },
@@ -251,7 +265,7 @@ export function AssetWorkspace({ locale }: Props) {
         { title: tr.asset_ad_cap3_title, desc: tr.asset_ad_cap3_desc },
         { title: tr.asset_ad_cap4_title, desc: tr.asset_ad_cap4_desc },
       ] },
-    bm:    { eyebrow: tr.asset_bm_eyebrow,    title: tr.asset_bm_title,    body: tr.asset_bm_body,
+    { key: 'bm', label: 'BM', subtitle: tr.asset_bm_desc, image: bmImage, eyebrow: tr.asset_bm_eyebrow,    title: tr.asset_bm_title,    body: tr.asset_bm_body,
       chips: [tr.asset_bm_badge1, tr.asset_bm_badge2, tr.asset_bm_badge3, tr.asset_bm_badge4],
       cap: [
         { title: tr.asset_bm_cap1_title, desc: tr.asset_bm_cap1_desc },
@@ -259,7 +273,7 @@ export function AssetWorkspace({ locale }: Props) {
         { title: tr.asset_bm_cap3_title, desc: tr.asset_bm_cap3_desc },
         { title: tr.asset_bm_cap4_title, desc: tr.asset_bm_cap4_desc },
       ] },
-    page:  { eyebrow: tr.asset_page_eyebrow,  title: tr.asset_page_title,  body: tr.asset_page_body,
+    { key: 'page', label: 'Page', subtitle: tr.asset_page_desc, image: pageImage, eyebrow: tr.asset_page_eyebrow,  title: tr.asset_page_title,  body: tr.asset_page_body,
       chips: [tr.asset_page_badge1, tr.asset_page_badge2, tr.asset_page_badge3, tr.asset_page_badge4],
       cap: [
         { title: tr.asset_page_cap1_title, desc: tr.asset_page_cap1_desc },
@@ -267,7 +281,7 @@ export function AssetWorkspace({ locale }: Props) {
         { title: tr.asset_page_cap3_title, desc: tr.asset_page_cap3_desc },
         { title: tr.asset_page_cap4_title, desc: tr.asset_page_cap4_desc },
       ] },
-    pixel: { eyebrow: tr.asset_pixel_eyebrow, title: tr.asset_pixel_title, body: tr.asset_pixel_body,
+    { key: 'pixel', label: 'Pixel', subtitle: tr.asset_pixel_desc, image: pixelImage, eyebrow: tr.asset_pixel_eyebrow, title: tr.asset_pixel_title, body: tr.asset_pixel_body,
       chips: [tr.asset_pixel_badge1, tr.asset_pixel_badge2, tr.asset_pixel_badge3, tr.asset_pixel_badge4],
       cap: [
         { title: tr.asset_pixel_cap1_title, desc: tr.asset_pixel_cap1_desc },
@@ -275,9 +289,9 @@ export function AssetWorkspace({ locale }: Props) {
         { title: tr.asset_pixel_cap3_title, desc: tr.asset_pixel_cap3_desc },
         { title: tr.asset_pixel_cap4_title, desc: tr.asset_pixel_cap4_desc },
       ] },
-  };
+  ];
 
-  const mod = moduleData[visible];
+  const mod = modules.find(module => module.key === visible)!;
   const visuals = capVisuals[visible];
 
   return (
@@ -317,7 +331,7 @@ export function AssetWorkspace({ locale }: Props) {
           {/* LEFT — Asset Navigator */}
           {/* Mobile: horizontal scroll row */}
           <div className="flex flex-row gap-2 lg:hidden overflow-x-auto pb-1">
-            {assets.map(asset => {
+            {modules.map(asset => {
               const isActive = asset.key === active;
               return (
                 <button
@@ -335,8 +349,8 @@ export function AssetWorkspace({ locale }: Props) {
                     {assetIcons[asset.key]}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[13px] font-bold truncate" style={{ color: isActive ? '#F5F8FF' : '#A9BDDF' }}>{asset.name}</div>
-                    <div className="text-[10px] mt-0.5 leading-tight break-words" style={{ color: '#5E7A9C' }}>{asset.desc}</div>
+                    <div className="text-[13px] font-bold truncate" style={{ color: isActive ? '#F5F8FF' : '#A9BDDF' }}>{asset.label}</div>
+                    <div className="text-[10px] mt-0.5 leading-tight break-words" style={{ color: '#5E7A9C' }}>{asset.subtitle}</div>
                   </div>
                 </button>
               );
@@ -359,7 +373,7 @@ export function AssetWorkspace({ locale }: Props) {
           >
             {/* Asset buttons */}
             <div className="flex flex-col gap-1.5">
-              {assets.map(asset => {
+              {modules.map(asset => {
                 const isActive = asset.key === active;
                 return (
                   <button
@@ -400,10 +414,10 @@ export function AssetWorkspace({ locale }: Props) {
                     <div className="min-w-0 flex-1">
                       <div className="text-[14px] font-bold tracking-[-0.01em] truncate"
                         style={{ color: isActive ? '#F5F8FF' : '#A9BDDF', transition: 'color 200ms ease' }}>
-                        {asset.name}
+                        {asset.label}
                       </div>
                       <div className="text-[11px] mt-0.5 leading-snug break-words" style={{ color: '#5E7A9C' }}>
-                        {asset.desc}
+                        {asset.subtitle}
                       </div>
                     </div>
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="flex-shrink-0"
@@ -521,31 +535,23 @@ export function AssetWorkspace({ locale }: Props) {
                 </div>
               </div>
 
-              {/* ── Media placeholder ── */}
+              {/* ── Workspace screenshot preview ── */}
               <div
-                className="rounded-2xl overflow-hidden relative"
+                className="workspace-preview-panel rounded-2xl overflow-hidden relative"
                 style={{
-                  border: '1px solid rgba(104,165,255,0.18)',
-                  aspectRatio: '16/10',
-                  boxShadow: '0 0 36px rgba(47,128,255,0.07)',
+                  border: '1px solid rgba(104,165,255,0.28)',
+                  aspectRatio: '1718 / 1303',
+                  boxShadow: '0 0 36px rgba(47,128,255,0.10)',
                 }}
               >
-                <div className="media-placeholder w-full h-full" style={{ minHeight: '180px', textTransform: 'none' }}>
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ background: 'rgba(47,128,255,0.12)', border: '1px solid rgba(104,165,255,0.18)', color: '#4D9CFF' }}
-                  >
-                    {assetIcons[visible]}
-                  </div>
-                  <span style={{ color: '#4D9CFF', letterSpacing: '0.08em', fontSize: '12px', fontWeight: 600 }}>
-                    {mod.title}
-                  </span>
-                  <span style={{ color: '#4A6580', fontSize: '11px', marginTop: '2px' }}>
-                    {tr.asset_media_subtitle}
-                  </span>
-                </div>
+                <img
+                  key={visible}
+                  src={mod.image}
+                  alt={mod.title}
+                  className="workspace-preview-image"
+                  decoding="async"
+                />
               </div>
-
               {/* ── 4 Capability cards ── */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {mod.cap.map((cap, i) => (
